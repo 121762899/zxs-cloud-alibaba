@@ -1,0 +1,39 @@
+dubbo:
+  protocol:
+    # dubbo 协议
+    name: dubbo
+    # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
+    port: 20881
+  registry:
+    # 挂载到 Spring Cloud 注册中心
+    address: @env.spring.cloud.registry.address@
+    group: @env.dubbo.group@
+  cloud:
+    subscribed-services: user-dubbo-service
+  provider:
+    dynamic: true
+    timeout: 60000
+    group: @env.dubbo.group@
+  consumer:
+    version: @env.dubbo.version@
+    check: false
+    group: @env.dubbo.group@
+
+spring:
+  application:
+    name: user-server
+  profiles:
+    active: @deploy@
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      config:
+        server-addr: @env.dubbo.registry.address@
+        namespace: @env.nacos.namespace@
+      # Nacos 服务发现与注册配置
+      discovery:
+        server-addr: @env.dubbo.registry.address@
+        namespace: @env.nacos.namespace@
+
+

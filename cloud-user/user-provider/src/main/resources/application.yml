@@ -1,0 +1,24 @@
+#服务暴露端口
+server:
+  port: 8080
+# mybatis-plus settings
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*Mapper*.xml
+  global-config:
+    db-config:
+      table-prefix: dh_
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true
+    #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    use-generated-keys: true
+
+logging:
+  level:
+    com.zxs.user.mapper: debug
+
+
+
+
